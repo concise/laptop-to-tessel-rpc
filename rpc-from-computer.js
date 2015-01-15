@@ -5,26 +5,33 @@
  * Change directory to where this script is
  *
  *      $ npm install tessel
+ * or
+ *      $ npm link tessel
+ *
+ * Then
+ *
  *      $ node say-hi-to-tessel.js
  *
  * You should see echo from Tessel board.
  *
  */
 var tessel = require('tessel');
-var count = 0;
 
-// `tessel.findTessel` finds a Tessel attached to this computer and connects.
+console.log('Hit CTRL-C to exit this program...\n');
+
 tessel.findTessel({serial: process.env.TESSEL_SERIAL}, function(err, device) {
   if (err) {
+    console.error('There is an error on findTessel() call.');
     throw err;
   }
 
-  setInterval(function() {
-    count += 1;
-    device.send('Hi, Tessel! (the ' + count + 'th time from laptop\' script)');
-  }, 1000);
+  var b = new Buffer('01020304', 'hex');
+  device.send(b);
+  console.log('Sent to Tessel board:');
+  console.log(b);
 
   device.on('message', function(m) {
-    console.log('Laptop got a message from Tessel:', m);
+    console.log('Result from Tessel board:');
+    console.log(m);
   });
 });

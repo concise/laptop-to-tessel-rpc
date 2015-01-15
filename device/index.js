@@ -9,7 +9,6 @@
  *
  */
 var tessel = require('tessel');
-var echo_counter = 0;
 
 // Blinking LED to indicate the Tessel is still alive.
 (function() {
@@ -23,8 +22,11 @@ var echo_counter = 0;
 
 // Echo back what Tessel receives.
 process.on('message', function(msg) {
-  echo_counter += 1;
-  process.send('Tessel board has got ' + echo_counter + ' messages from USB port.  This time it is: ' + msg);
+  if (Buffer.isBuffer(msg)) {
+    process.send(tessel.plusone(msg));
+  } else {
+    process.send('Input is not a `Buffer` object.');
+  }
 });
 
 // Keep the event loop alive
