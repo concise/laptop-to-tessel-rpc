@@ -1,13 +1,9 @@
 var tessel = require('tessel');
 
-// Blinking LED to indicate the Tessel is still alive.
+// Blinking LED to indicate the Tessel is alive.
 (function() {
   var led1 = tessel.led[0].output(1);
-  var led2 = tessel.led[1].output(0);
-  setInterval(function() {
-    led1.toggle();
-    led2.toggle();
-  }, 2000);
+  setInterval(function() { led1.toggle(); }, 1000);
 }());
 
 // Echo back what Tessel receives.
