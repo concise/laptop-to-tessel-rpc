@@ -1,20 +1,3 @@
-#!/usr/bin/env node
-/*
- * Usage:
- *
- * Change directory to where this script is
- *
- *      $ npm install tessel
- * or
- *      $ npm link tessel
- *
- * Then
- *
- *      $ node say-hi-to-tessel.js
- *
- * You should see echo from Tessel board.
- *
- */
 var tessel = require('tessel');
 
 console.log('Hit CTRL-C to exit this program...\n');

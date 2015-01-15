@@ -1,13 +1,3 @@
-/*
- * Usage:
- *
- * Change directory to where this script is, and then
- *
- *      $ tessel push .
- *
- * You should see the LEDs on Tessel board are blinking.
- *
- */
 var tessel = require('tessel');
 
 // Blinking LED to indicate the Tessel is still alive.
